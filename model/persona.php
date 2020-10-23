@@ -1,18 +1,13 @@
 <?php
 
-class User{
-    //Vamos a poner atributos
-    private $idAdmin;
-    private $email;
-    private $pass;
-    //Vamos a poner el contructor
-    public function __construct($email, $password){
-            $this->email=$email;
-            $this->password=$password;
-    }
-    //Metodos getters and setters
-    
+class Persona{
+    protected $email;
+    protected $pass;
 
+    public function __construct($email,$pass){
+        $this->email=$email;
+        $this->pass=$pass;
+    }
 
     /**
      * Get the value of idAdmin

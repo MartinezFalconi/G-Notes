@@ -1,6 +1,7 @@
 <?php
-require_once 'user.php';
-class UserDao{
+//DAO=DATA ACCES OBJECT
+require_once 'administrador.php';
+class AdminDao{
     private $pdo;
 
     public function __construct(){
@@ -8,22 +9,21 @@ class UserDao{
         $this->pdo=$pdo;
     }
 
-    public function login($user){
-        $query = "SELECT * FROM users WHERE Email=? AND Pass=?";
+    public function login($admin){
+        $query = "SELECT * FROM tbladministrador WHERE email=? AND pass=?";
         $sentencia=$this->pdo->prepare($query);
-        $email=$user->getEmail();
-        $psswd=$user->getPass();
+        $email=$admin->getEmail();
+        $pass=$admin->getPass();
         //bindParam rellena por orden los interrogantes de la query
         $sentencia->bindParam(1,$email);
         $sentencia->bindParam(2,$pass);
         $sentencia->execute();
-        $result=$sentencia->fetch(PDO::FETCH_ASSOC);
         $numRow=$sentencia->rowCount();
-        if(!empty($numRow) && $numRow==1){
-            $user->setName($result['Name']);
-            $user->setId_user($result['Id']);
+        if($numRow==1){
+            $admin->setEmail($result['email']);
+            $admin->setIdAdmin($result['idAdmin']);
             session_start();
-            $_SESSION['user']=$user;
+            $_SESSION['admin']=$admin;
             return true;
         }else {
             return false;
@@ -32,4 +32,3 @@ class UserDao{
 }
 
 ?>
-
