@@ -1,22 +1,4 @@
-<?php
-require_once '../model/persona.php';
-require_once '../model/personaDAO.php';
-if (isset($_POST['email'])) {
-    //linea 6 rellena el construct de la clase administrador crea objeto
-    $persona = new Persona($_POST['email'], md5($_POST['pass']));
-    //establece conexion con base de datos y ejecura la query, despues de comprobar la info en adminDAO.php
-    $personaDAO = new PersonaDAO();
-    if($personaDAO->login($persona)){
-        header('Location:../view/zona.admin.php');
-    }else {
-        header('Location:../view/login.php');
-    }
-}else {
-    header('Location:../view/login.php');
-}
 
-
-/*ORIGINAL
 <?php
 require_once '../model/administrador.php';
 require_once '../model/adminDAO.php';
@@ -33,5 +15,3 @@ if (isset($_POST['email'])) {
 }else {
     header('Location:../view/login.php');
 }
-
-*/
