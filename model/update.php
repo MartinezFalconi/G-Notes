@@ -3,6 +3,7 @@ require_once './connection.php';
 $id = $_REQUEST["id"];
 $sql = "SELECT * FROM tblalumnos WHERE idAlumno = $id";
 $result = mysqli_query($conexion,$sql);
+$nota = 0;
 
     if ($row = mysqli_fetch_array($result)) {
                             
@@ -13,9 +14,21 @@ $result = mysqli_query($conexion,$sql);
         echo "Grupo: <INPUT TYPE = 'TEXT' NAME = 'grupo' VALUE = '{$row["grupo"]}'><br>";
         echo "Email: <INPUT TYPE = 'TEXT' NAME = 'email' VALUE = '{$row["email"]}'><br>";
         echo "<INPUT TYPE = 'HIDDEN' NAME = 'id' VALUE = '{$id}'><br>";
-        echo "<INPUT TYPE = 'SUBMIT' NAME = 'actualizar' VALUE = 'Actualizar'><br>";
 
+        $sql2 = "SELECT * FROM tblnotas WHERE idAlumnoFK = $id";
+        $result2 = mysqli_query($conexion,$sql2);
+        
+            while($row2 = mysqli_fetch_array($result2)){
+                $nota = $nota+1;
+                echo "Nota$nota: {$row2["nomAsignatura"]} <INPUT TYPE = 'TEXT' NAME = '$nota' VALUE = '{$row2["nota"]}'><br>";
+                echo "<INPUT TYPE = 'HIDDEN' NAME = 'nota$nota' VALUE = '{$row2["idNotas"]}'>";
+            }
+
+
+        echo "<INPUT TYPE = 'SUBMIT' NAME = 'actualizar' VALUE = 'Actualizar'><br>";
     }
+
+
 
 
 

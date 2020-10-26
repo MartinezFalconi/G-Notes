@@ -23,33 +23,10 @@ require_once '../controller/sessionController.php';
     </div>
 
     <?php
-        /* PROBLEMA CUANDO INICIAS PAGINA */
-        $name = $_POST['nombre'];
-        $apellido = $_POST['apellidoP'];
-
         require_once '../model/connection.php';
-        if (empty($name or $apellido)) {
-            $sql = "SELECT * FROM tblalumnos";
-            $result = mysqli_query($conexion,$sql);
-            echo "<table>";
-                echo "<tr>";
-                echo "<th>Nombre</th>";
-                echo "<th>Apellido P</th>";
-                echo "<th>Apellido M</th>";
-                echo "<th>Actualizar</th>";
-                echo "<th>Eliminar</th>"; 
-                echo "<th><a href='../model/add.php'>Añadir alumno</a></th>";
-                echo "</tr>";
-                foreach ($result as $result) {
-                    echo "<tr>";
-                    echo "<td>{$result['nombre']}</td>";
-                    echo "<td>{$result['apellido0']}</td>";
-                    echo "<td>{$result['apellido1']}</td>";
-                    echo "<td><a href='../model/update.php?id={$result['idAlumno']}'>Actualizar</a></td>";
-                    echo "<td><a href='../model/delete.php?id={$result['idAlumno']}'>Eliminar</a></td>";
-                }
-            echo "</table>";
-        }else{
+        if (isset($_POST['nombre'])) {
+            $name = $_POST['nombre'];
+            $apellido = $_POST['apellidoP'];
             $sql = "SELECT * FROM tblalumnos WHERE nombre LIKE '%$name%' AND apellido0 LIKE '%$apellido%'";
             $result = mysqli_query($conexion,$sql);
             echo "<table>";
@@ -70,9 +47,31 @@ require_once '../controller/sessionController.php';
                     echo "<td><a href='../model/delete.php?id={$result['idAlumno']}'>Eliminar</a></td>";
                 }
             echo "</table>";
+        }else{
+            $sql = "SELECT * FROM tblalumnos";
+            $result = mysqli_query($conexion,$sql);
+            echo "<table>";
+                echo "<tr>";
+                echo "<th>Nombre</th>";
+                echo "<th>Apellido P</th>";
+                echo "<th>Apellido M</th>";
+                echo "<th>Actualizar</th>";
+                echo "<th>Eliminar</th>"; 
+                echo "<th><a href='../model/add.php'>Añadir alumno</a></th>";
+                echo "</tr>";
+                foreach ($result as $result) {
+                    echo "<tr>";
+                    echo "<td>{$result['nombre']}</td>";
+                    echo "<td>{$result['apellido0']}</td>";
+                    echo "<td>{$result['apellido1']}</td>";
+                    echo "<td><a href='../model/update.php?id={$result['idAlumno']}'>Actualizar</a></td>";
+                    echo "<td><a href='../model/delete.php?id={$result['idAlumno']}'>Eliminar</a></td>";
+                }
+            echo "</table>";
         }
     ?>
 
+<h2><a href='../model/calculos.php'>Datos de interés</a></h2>
 
   
 </body>
