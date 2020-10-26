@@ -1,4 +1,5 @@
 <?php
+require_once '../controller/sessionController.php';
 require_once './connection.php';
 $id = $_REQUEST["id"];
 $sql = "SELECT * FROM tblalumnos WHERE idAlumno = $id";
@@ -28,7 +29,7 @@ $nota = 0;
         echo "<INPUT TYPE = 'SUBMIT' NAME = 'actualizar' VALUE = 'Actualizar'><br>";
     }
 
-
+echo "<h4><a href='../view/zona.admin.php'>Volver</a></h4>";
 
 
 

@@ -8,10 +8,10 @@
 </head>
 <body>
 
-    <form action="../controller/loginController.php" method="POST">
+    <form action="../controller/loginController.php" method="POST" onsubmit="return validaForm()">
         <p>
-        Correo electrónico: <input type="email" name="email"><br>
-        Contraseña: <input type="password" name="pass"><br>
+        Correo electrónico: <input type="email" name="email" id="email" ><br>
+        Contraseña: <input type="password" name="pass" id="pass" ><br>
         <input type="submit" value="Iniciar sesisón">
         </p>
     </form>
