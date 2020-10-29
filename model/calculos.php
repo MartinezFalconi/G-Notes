@@ -1,3 +1,15 @@
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+</html>
 <?php
 require_once './connection.php';
 
@@ -56,7 +68,7 @@ WHERE nomAsignatura = 'Programación'
 ORDER BY nota DESC LIMIT 1";
 $result5 = mysqli_query($conexion,$sql5);
 
-    echo "<table>";
+    echo "<table class='table'>";
         echo "<tr>";
         echo "<th>Alumno</th>";
         echo "<th>Nota</th>";
@@ -82,3 +94,4 @@ $result5 = mysqli_query($conexion,$sql5);
     echo "</table>";
 
     echo "<h4><a href='../view/zona.admin.php'>Volver</a></h4>";
+?>
