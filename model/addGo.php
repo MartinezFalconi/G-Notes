@@ -10,7 +10,7 @@ require_once './connection.php';
     $pass = $_REQUEST["pass"];
 
     // Prepare
-    $sql = "INSERT INTO `tblalumnos`(`nombre`, `apellido0`, `apellido1`, `grupo`, `email`, `pass`) VALUES (?,?,?,?,?,?)";
+    $sql = "INSERT INTO `tblalumnos`(`nombre`, `apellido0`, `apellido1`, `grupo`, `email`, `pass`) VALUES (?,?,?,?,?,md5(?))";
     $stmt = $pdo->prepare($sql);
     // Bind
     $stmt->bindParam(1, $name);
